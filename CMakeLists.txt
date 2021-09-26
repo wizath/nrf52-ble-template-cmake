@@ -6,14 +6,21 @@ set(SDK_ROOT sdk)
 
 project(template C ASM)
 
+# find required programs
+find_program(NRFUTIL "nrfutil")
+if (NOT NRFUTIL)
+    message(FATAL_ERROR "nrfutil is required for key generation")
+endif ()
+
 if (NOT EXISTS ${CMAKE_SOURCE_DIR}/private.key)
+    MESSAGE(status 'I DONT EXIST')
     # generate private key
     execute_process(
             COMMAND nrfutil keys generate ${CMAKE_SOURCE_DIR}/private.key
     )
     # generate c file
     execute_process(
-            COMMAND nrfutil keys display --key pk --format code private.key --out_file ${CMAKE_SOURCE_DIR}/bootloader/public_key.c
+            COMMAND nrfutil keys display --key pk --format code ${CMAKE_SOURCE_DIR}/private.key --out_file ${CMAKE_SOURCE_DIR}/bootloader/dfu_public_key.c
     )
 endif ()
 
