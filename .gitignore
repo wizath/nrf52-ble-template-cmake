@@ -1,0 +1,5 @@
+.idea/
+.DS_Store
+cmake-build-debug/
+private.key
+**/dfu_public_key.c
