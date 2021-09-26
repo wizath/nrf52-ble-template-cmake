@@ -6,3 +6,5 @@ Project is configured in CMake for easy autocompletion in CLion.
 Targets:
 - dfu -- create dfu zip package for flashing
 - full_hex -- creates app+settings+dfu bootloader+ softdevice hex combo for flashing via JLink
+
+## Remember to checkout the micro_ecc library and build it before compilation (todo automagically)
